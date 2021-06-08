@@ -25,7 +25,8 @@ func (pointerToAirline *airline) updateAirlineName(englishName, persianName stri
 }
 
 func main() {
-	sepehran := airline{
+	// Way1 not using & operator (Implicit)
+	airline1 := airline{
 		airlineId:    1,
 		englishName:  "Sepehran",
 		persianName:  "سپهران",
@@ -33,8 +34,21 @@ func main() {
 		dateCreated:  time.Now(),
 		dateModified: time.Now(),
 	}
-	sepehran.toString()
+	airline1.toString()
 	fmt.Println()
-	sepehran.updateAirlineName("IranAir", "ایران ایر")
-	sepehran.toString()
+	airline1.updateAirlineName("IranAir", "ایران ایر")
+	airline1.toString()
+
+	// Way2 using & operator for getting memory address
+	airline2 := airline{
+		airlineId:    2,
+		englishName:  "ParsAir",
+		persianName:  "پارس ایر",
+		location:     "Iran",
+		dateCreated:  time.Now(),
+		dateModified: time.Now(),
+	}
+	airline2Pointer := &airline2
+	airline2Pointer.updateAirlineName("Aseman", "آسمان")
+	airline2.toString()
 }
